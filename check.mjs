@@ -1,0 +1,15 @@
+import { chromium } from 'playwright';
+const b = await chromium.launch({ executablePath: '/opt/pw-browsers/chromium' });
+const ctx = await b.newContext({ viewport:{width:1280,height:900}, deviceScaleFactor:1 });
+await ctx.route('**', r => r.request().url().includes('localhost') ? r.continue() : r.abort());
+const p = await ctx.newPage();
+const bad=[]; p.on('response', r => { if (r.status()>=400) bad.push(r.status()+' '+r.url()); });
+await p.goto('http://localhost:8088/sinnergems/', { waitUntil:'load' });
+await p.evaluate(()=>window.scrollTo(0,document.body.scrollHeight));
+await p.waitForTimeout(1800);
+await p.evaluate(()=>window.scrollTo(0,0));
+await p.waitForTimeout(600);
+await p.screenshot({path:'/tmp/base.png', fullPage:true});
+console.log('height', await p.evaluate(()=>document.body.scrollHeight));
+console.log('404s:', bad.length ? bad.slice(0,6) : 'нет');
+await b.close();

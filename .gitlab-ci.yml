@@ -1,0 +1,32 @@
+# Сборка статики и публикация на GitLab Pages при каждом пуше в main.
+# Сайт будет по адресу https://<логин>.gitlab.io/<имя-проекта>/
+#
+# Закрыть сайт от посторонних: Settings → General → Visibility →
+# Pages → Only project members. На бесплатном тарифе это доступно.
+image: node:22
+
+variables:
+  BASE_PATH: /sinnergems
+  NEXT_PUBLIC_BASE_PATH: /sinnergems
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - .npm/
+
+pages:
+  stage: deploy
+  script:
+    - npm ci --cache .npm --prefer-offline
+    - STATIC_EXPORT=1 npm run build
+    # GitLab Pages отдаёт содержимое папки public. Исходная public/ уже
+    # скопирована сборкой внутрь out/, так что подменяем её — правится только
+    # рабочая копия в раннере, репозиторий не меняется.
+    - rm -rf public && mv out public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"

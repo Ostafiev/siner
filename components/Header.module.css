@@ -1,0 +1,288 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg-header);
+  transition: box-shadow 0.4s var(--ease), background 0.4s var(--ease);
+}
+
+.scrolled {
+  background: rgba(12, 12, 11, 0.92);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 1px 0 rgba(201, 184, 139, 0.14);
+}
+
+.inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  max-width: calc(var(--container) + var(--gutter) * 2);
+  margin: 0 auto;
+  padding-inline: var(--gutter);
+}
+
+/* -------------------------------------------------- левая группа */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+  flex: 1 1 0;
+}
+
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text);
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  transition: color 0.3s var(--ease);
+}
+.lang:hover {
+  color: var(--gold-light);
+}
+.chevron {
+  width: 10px;
+  transition: transform 0.3s var(--ease);
+}
+.lang:hover .chevron {
+  transform: translateY(2px);
+}
+
+/* -------------------------------------------------- бургер */
+.burger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  width: 26px;
+  height: 22px;
+}
+.burger span {
+  display: block;
+  height: 1.4px;
+  width: 100%;
+  background: var(--text);
+  transition: transform 0.35s var(--ease), background 0.3s var(--ease);
+}
+.burger:hover span {
+  background: var(--gold-light);
+}
+.burger:hover span:first-child {
+  transform: translateX(3px);
+}
+
+.burgerMobile {
+  display: none;
+}
+
+/* -------------------------------------------------- логотип */
+.logo {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.logoMark {
+  display: none;
+  width: 46px;
+  height: 46px;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 40px;
+  line-height: 1;
+  letter-spacing: 0.055em;
+  white-space: nowrap;
+  transition: opacity 0.3s var(--ease);
+}
+.logo:hover .logoText {
+  opacity: 0.82;
+}
+
+/* -------------------------------------------------- правая группа */
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 22px;
+  flex: 1 1 0;
+}
+
+.iconLink {
+  color: var(--gold);
+  transition: color 0.3s var(--ease), transform 0.3s var(--ease);
+}
+.iconLink:hover {
+  color: var(--gold-light);
+  transform: translateY(-2px);
+}
+.icon {
+  width: 21px;
+  height: 21px;
+}
+
+/* -------------------------------------------------- меню */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 110;
+  background: rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s var(--ease), visibility 0.45s;
+}
+.overlayOpen {
+  opacity: 1;
+  visibility: visible;
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 120;
+  width: min(420px, 88vw);
+  padding: 40px var(--gutter);
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-header);
+  border-left: 1px solid rgba(201, 184, 139, 0.18);
+  transform: translateX(100%);
+  transition: transform 0.55s var(--ease);
+  overflow-y: auto;
+}
+.drawerOpen {
+  transform: none;
+}
+
+.close {
+  align-self: flex-end;
+  position: relative;
+  width: 26px;
+  height: 26px;
+  color: var(--gold);
+  transition: color 0.3s var(--ease), transform 0.4s var(--ease);
+}
+.close:hover {
+  color: var(--gold-light);
+  transform: rotate(90deg);
+}
+.close span {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1.4px;
+  background: currentColor;
+}
+.close span:first-child {
+  transform: rotate(45deg);
+}
+.close span:last-child {
+  transform: rotate(-45deg);
+}
+
+.navList {
+  margin-top: 44px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.navList li {
+  opacity: 0;
+  transform: translateX(22px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.drawerOpen .navList li {
+  opacity: 1;
+  transform: none;
+}
+.navList a {
+  display: block;
+  padding: 12px 0;
+  font-family: var(--font-display);
+  font-size: 26px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+  transition: color 0.3s var(--ease), padding-left 0.35s var(--ease);
+}
+.navList a:hover {
+  color: var(--gold-light);
+  padding-left: 12px;
+}
+
+.drawerFoot {
+  margin-top: auto;
+  padding-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-dim);
+}
+.drawerFoot a:hover {
+  color: var(--gold-light);
+}
+
+/* ==================================================================
+   Мобильный хедер: марка + шрифтовой логотип по центру, бургер справа
+   ================================================================== */
+@media (max-width: 900px) {
+  .inner {
+    height: var(--header-h-mob);
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    justify-content: flex-end;
+    gap: 0;
+  }
+
+  .iconLink {
+    display: none;
+  }
+
+  .burgerDesktop {
+    display: none;
+  }
+
+  .burgerMobile {
+    display: flex;
+    gap: 7px;
+    width: 34px;
+    height: 26px;
+  }
+  .burgerMobile span {
+    height: 4px;
+    background: var(--gold);
+  }
+
+  .logoMark {
+    display: block;
+  }
+
+  .logoText {
+    font-size: 17px;
+    letter-spacing: 0.16em;
+  }
+
+  .drawer {
+    padding-top: 32px;
+  }
+  .navList a {
+    font-size: 22px;
+  }
+}
