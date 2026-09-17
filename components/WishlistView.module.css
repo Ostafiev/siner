@@ -1,0 +1,240 @@
+/* Избранное: широкие строки, колонки разделены тонкими линиями.
+   Ширины с макета при контейнере 1200: 103 / 226 / 1fr / 199.
+   Колонку цены убрали — цены на сайте не показываем. */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 220px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 103px 226px minmax(0, 1fr) 260px;
+  min-height: 224px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  transition: border-color 0.4s var(--ease);
+}
+.row:hover {
+  border-color: rgba(201, 184, 139, 0.3);
+}
+
+/* каждая ячейка, кроме первой, отделена вертикальной линией */
+.cell {
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+}
+.cell + .cell {
+  border-left: 1px solid var(--line-soft);
+}
+.row > .cell:first-child {
+  justify-content: center;
+}
+
+.remove {
+  width: 20px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 0.3s var(--ease);
+}
+.remove svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.remove:hover {
+  color: var(--gold-light);
+}
+
+.media {
+  justify-content: center;
+  padding: 18px 16px;
+}
+.media img {
+  max-width: 100%;
+  max-height: 188px;
+  object-fit: contain;
+}
+
+.body {
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 18px 30px 18px 58px;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.title a {
+  transition: color 0.3s var(--ease);
+}
+.title a:hover {
+  color: var(--gold-light);
+}
+
+.specs {
+  margin: 30px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  line-height: 28px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* превью сборки из конструктора: кольцо вписываем в ту же ячейку, что и фото */
+.ring {
+  display: block;
+  width: 188px;
+  height: 188px;
+}
+
+.act {
+  justify-content: flex-end;
+  padding: 18px 30px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 111px;
+  height: 38px;
+  padding: 0 18px;
+  border: 0;
+  border-radius: 3px;
+  background: var(--gold);
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #17150f;
+  cursor: pointer;
+  transition: background 0.3s var(--ease);
+}
+.btn:hover {
+  background: var(--gold-light);
+}
+
+/* -------------------------------------------------- пусто */
+.empty {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+.emptyTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 30px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.emptyNote {
+  max-width: 460px;
+  margin: 16px auto 0;
+  font-size: 15px;
+  line-height: 23px;
+  color: var(--text-dim);
+}
+.emptyLink {
+  display: inline-block;
+  margin-top: 26px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.emptyLink:hover {
+  color: var(--gold-light);
+}
+
+/* -------------------------------------------------- планшет и телефон */
+@media (max-width: 1100px) {
+  .row {
+    grid-template-columns: 70px 180px minmax(0, 1fr) 200px;
+  }
+  .body {
+    padding-left: 28px;
+  }
+  .act {
+    justify-content: center;
+    padding: 18px 20px;
+  }
+  .ring {
+    width: 150px;
+    height: 150px;
+  }
+}
+
+@media (max-width: 760px) {
+  .row {
+    position: relative;
+    grid-template-columns: 120px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    min-height: 0;
+  }
+  .cell + .cell {
+    border-left: 0;
+  }
+  /* корзинка уезжает в угол карточки, своя колонка ей не нужна */
+  .row > .cell:first-child {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 0;
+  }
+  .row > .cell:nth-child(2),
+  .row > .cell:nth-child(3) {
+    grid-row: 1;
+  }
+  .media {
+    padding: 14px;
+  }
+  .media img {
+    max-height: 120px;
+  }
+  .body {
+    padding: 16px 40px 16px 0;
+  }
+  .title {
+    font-size: 15px;
+    line-height: 19px;
+  }
+  .specs {
+    margin-top: 12px;
+    font-size: 12px;
+    line-height: 20px;
+  }
+  .ring {
+    width: 92px;
+    height: 92px;
+  }
+  .act {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-content: stretch;
+    padding: 0 14px 16px;
+    border-left: 0;
+  }
+  .btn {
+    width: 100%;
+  }
+}

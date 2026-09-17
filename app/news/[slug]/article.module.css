@@ -1,0 +1,142 @@
+/* Статья. Макета не было — набрано в стиле сайта: широкая обложка,
+   узкая колонка текста, внизу три другие новости. */
+
+.page {
+  padding: 17px 0 110px;
+}
+
+.date {
+  display: block;
+  margin-top: 22px;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.cover {
+  overflow: hidden;
+  margin-top: 18px;
+  aspect-ratio: 1200 / 460;
+  border-radius: 10px;
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.body {
+  max-width: 720px;
+  margin-top: 46px;
+}
+
+.lead {
+  margin: 0;
+  font-size: 20px;
+  line-height: 31px;
+  color: var(--text);
+}
+
+.text {
+  margin: 24px 0 0;
+  font-size: 16px;
+  line-height: 27px;
+  color: var(--text-dim);
+}
+
+/* -------------------------------------------------- другие новости */
+.other {
+  margin-top: 90px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.otherTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.otherGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+}
+
+.thumb {
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 380 / 240;
+  border-radius: 10px;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+.card:hover .thumb img {
+  transform: scale(1.04);
+}
+
+.cardDate {
+  margin-top: 14px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.cardTitle {
+  margin-top: 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  line-height: 1.25;
+  color: var(--text);
+  transition: color 0.3s var(--ease);
+}
+.card:hover .cardTitle {
+  color: var(--gold-light);
+}
+
+@media (max-width: 1000px) {
+  .otherGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 10px 0 70px;
+  }
+  .cover {
+    aspect-ratio: 4 / 3;
+  }
+  .body {
+    margin-top: 30px;
+  }
+  .lead {
+    font-size: 17px;
+    line-height: 27px;
+  }
+  .text {
+    font-size: 15px;
+    line-height: 25px;
+  }
+  .other {
+    margin-top: 60px;
+  }
+  .otherGrid {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}

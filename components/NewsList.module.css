@@ -1,0 +1,194 @@
+/* Лента новостей. Макета не было — сделано в языке блока с главной:
+   крупная первая новость с текстом поверх фотографии, дальше сетка. */
+
+.wrap {
+  margin-top: 34px;
+}
+
+/* -------------------------------------------------- крупная новость */
+.featured {
+  display: block;
+}
+
+.cover {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 1200 / 460;
+  border-radius: 10px;
+}
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.4s var(--ease);
+}
+.cover:hover img {
+  transform: scale(1.03);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.1) 45%,
+    rgba(0, 0, 0, 0.78)
+  );
+}
+
+.overlay {
+  position: absolute;
+  left: 34px;
+  right: 34px;
+  bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.bigTitle {
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1.15;
+  letter-spacing: 0.02em;
+  color: #fff;
+  max-width: 780px;
+}
+
+/* -------------------------------------------------- сетка остальных */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 40px 30px;
+  margin-top: 56px;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+}
+
+.thumb {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  aspect-ratio: 380 / 240;
+  border-radius: 10px;
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s var(--ease);
+}
+.thumb:hover img {
+  transform: scale(1.04);
+}
+.thumb .date {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+}
+
+.date {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.title {
+  margin: 18px 0 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  line-height: 1.25;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+.title a {
+  transition: color 0.3s var(--ease);
+}
+.title a:hover {
+  color: var(--gold-light);
+}
+
+.excerpt {
+  margin: 14px 0 0;
+  font-size: 15px;
+  line-height: 24px;
+  color: var(--text-dim);
+}
+/* в сетке подводки разной длины — ссылку прижимаем к низу карточки,
+   чтобы «читать» стояли в один ряд */
+.item .excerpt {
+  flex: 1 1 auto;
+}
+.featured .excerpt {
+  max-width: 720px;
+  margin-top: 22px;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.more {
+  align-self: flex-start;
+  margin-top: 16px;
+  padding-top: 2px;
+  font-family: var(--font-display);
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  transition: color 0.3s var(--ease);
+}
+.more:hover {
+  color: var(--gold-light);
+}
+.featured .more {
+  display: inline-block;
+  margin-top: 18px;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 34px 24px;
+  }
+  .bigTitle {
+    font-size: 26px;
+  }
+}
+
+@media (max-width: 700px) {
+  .wrap {
+    margin-top: 24px;
+  }
+  .cover {
+    aspect-ratio: 4 / 3;
+  }
+  .overlay {
+    left: 18px;
+    right: 18px;
+    bottom: 18px;
+    gap: 8px;
+  }
+  .bigTitle {
+    font-size: 20px;
+  }
+  .featured .excerpt {
+    margin-top: 16px;
+    font-size: 15px;
+    line-height: 24px;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    margin-top: 38px;
+  }
+  .title {
+    font-size: 18px;
+  }
+}

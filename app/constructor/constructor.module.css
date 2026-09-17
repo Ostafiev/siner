@@ -1,0 +1,13 @@
+.page {
+  padding: 17px 0 90px;
+}
+
+.page > :global(.container) > :global(*) + * {
+  margin-top: 22px;
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 10px 0 60px;
+  }
+}

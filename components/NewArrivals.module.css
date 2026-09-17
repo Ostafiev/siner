@@ -10,6 +10,8 @@
   height: 380px;
   margin-top: 26px;
   touch-action: pan-y;
+  /* не отдаём горизонтальный жест браузеру — иначе он уходит «назад» */
+  overscroll-behavior-x: contain;
   outline: none;
   cursor: grab;
 }

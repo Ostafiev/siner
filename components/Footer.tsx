@@ -62,9 +62,6 @@ export default function Footer() {
           </div>
         </div>
 
-        <p className={s.credit}>
-          разработано в <span className={s.creactor}>Creactor</span>
-        </p>
       </div>
     </footer>
   );

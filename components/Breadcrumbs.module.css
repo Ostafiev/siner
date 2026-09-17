@@ -1,0 +1,46 @@
+.wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0;
+  font-family: var(--font-display);
+  text-transform: uppercase;
+}
+
+.item {
+  display: inline-flex;
+  align-items: baseline;
+}
+
+.link {
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: #8b857c;
+  transition: color 0.3s var(--ease);
+}
+a.link:hover {
+  color: var(--gold-light);
+}
+
+.sep {
+  margin: 0 7px;
+  font-size: 13px;
+  color: #6d6860;
+}
+
+/* текущий раздел — крупнее и светлее, он же заголовок страницы */
+.current {
+  font-size: 21px;
+  letter-spacing: 0.05em;
+  color: #ece7dc;
+}
+
+@media (max-width: 900px) {
+  .link,
+  .sep {
+    font-size: 12px;
+  }
+  .current {
+    font-size: 18px;
+  }
+}

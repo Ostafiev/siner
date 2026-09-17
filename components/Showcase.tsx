@@ -27,8 +27,7 @@ export default function Showcase() {
               />
               <span className={s.body}>
                 <span className={s.title}>{c.title}</span>
-                <span className={s.cta}>Shop now</span>
-              </span>
+                </span>
             </Link>
           ))}
         </div>

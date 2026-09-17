@@ -1,0 +1,134 @@
+/* Текстовая страница. Макета не было — набрано в стиле сайта:
+   узкая колонка, Forum в заголовках, спокойные интервалы. */
+
+.page {
+  padding: 17px 0 110px;
+}
+
+.body {
+  max-width: 720px;
+  margin-top: 46px;
+}
+
+/* предупреждение над правовым текстом */
+.notice {
+  margin: 0 0 40px;
+  padding: 14px 18px;
+  border: 1px solid rgba(201, 184, 139, 0.28);
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 21px;
+  color: var(--gold);
+}
+
+.lead {
+  margin: 0;
+  font-size: 20px;
+  line-height: 31px;
+  color: var(--text);
+}
+
+.block {
+  margin-top: 44px;
+}
+
+.heading {
+  margin: 0 0 14px;
+  font-family: var(--font-display);
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+  color: var(--text-dim);
+}
+
+/* -------------------------------------------------- контакты */
+.contacts {
+  margin: 0;
+  font-size: 16px;
+  line-height: 26px;
+}
+.contacts > div {
+  display: flex;
+  gap: 16px;
+  padding: 7px 0;
+}
+.contacts dt {
+  min-width: 110px;
+  color: var(--text-muted);
+}
+.contacts dd {
+  margin: 0;
+}
+.contacts a {
+  color: var(--text);
+  transition: color 0.3s var(--ease);
+}
+.contacts a:hover {
+  color: var(--gold-light);
+}
+
+.socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 30px;
+  margin: 34px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.socials a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: var(--text-dim);
+  transition: color 0.3s var(--ease);
+}
+.socials a:hover {
+  color: var(--gold-light);
+}
+.icon {
+  width: 22px;
+  height: 22px;
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 10px 0 70px;
+  }
+  .body {
+    margin-top: 30px;
+  }
+  .lead {
+    font-size: 17px;
+    line-height: 27px;
+  }
+  .block {
+    margin-top: 34px;
+  }
+  .heading {
+    font-size: 19px;
+  }
+  .text {
+    font-size: 15px;
+    line-height: 24px;
+  }
+  .contacts,
+  .socials a {
+    font-size: 15px;
+  }
+  .contacts > div {
+    flex-direction: column;
+    gap: 2px;
+  }
+  .contacts dt {
+    min-width: 0;
+  }
+}

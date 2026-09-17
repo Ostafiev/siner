@@ -92,6 +92,23 @@ export const YoutubeIcon = ({ className }: P) => (
   </svg>
 );
 
+
+/* корзинка «удалить» — в корзине и избранном */
+export const TrashIcon = ({ className }: P) => (
+  <svg viewBox="0 0 20 22" className={className} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2.5 5.5h15M8 5.5V3.2c0-.4.3-.7.7-.7h2.6c.4 0 .7.3.7.7v2.3" />
+    <path d="M4.4 5.5 5.3 19c0 .6.5 1 1 1h7.4c.6 0 1-.4 1-1l.9-13.5" />
+    <path d="M8.2 9.3v7M11.8 9.3v7" />
+  </svg>
+);
+
+/* галочка рядом со статусом «доставлен» */
+export const CheckIcon = ({ className }: P) => (
+  <svg viewBox="0 0 18 14" className={className} aria-hidden="true" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M1 7.4 6.2 12.6 17 1.6" />
+  </svg>
+);
+
 export const socialIcons: Record<string, (p: P) => React.ReactElement> = {
   whatsapp: WhatsappIcon,
   instagram: InstagramIcon,

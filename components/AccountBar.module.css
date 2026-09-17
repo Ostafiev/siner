@@ -1,0 +1,29 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+
+.icon {
+  width: 17px;
+  height: 17px;
+  color: var(--text-dim);
+}
+
+.name {
+  color: var(--text);
+}
+
+@media (max-width: 900px) {
+  .bar {
+    font-size: 13px;
+    gap: 8px;
+  }
+  .mail {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}

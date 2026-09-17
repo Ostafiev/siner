@@ -8,8 +8,15 @@ import "@fontsource-variable/manrope";
 
 import "./globals.css";
 
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Reveal from "@/components/Reveal";
+
 export const metadata: Metadata = {
-  title: "SINNERGEMS — авторские бусины и камни",
+  title: {
+    default: "SINNERGEMS — авторские бусины и камни",
+    template: "%s — SINNERGEMS",
+  },
   description:
     "Конструктор и каталог авторских бусин ручной работы. Шпинель, корунды, редкие камни.",
   openGraph: {
@@ -32,7 +39,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        {/* Шапка и подвал общие для всех страниц: при переходах они
+            не перерисовываются, поэтому переход ощущается мгновенным. */}
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <Reveal />
+      </body>
     </html>
   );
 }

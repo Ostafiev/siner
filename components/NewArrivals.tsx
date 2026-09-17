@@ -63,6 +63,48 @@ export default function NewArrivals() {
     };
   }, [go]);
 
+  /* горизонтальный жест на трекпаде: два пальца влево-вправо.
+     Такой жест приходит как wheel с deltaX. После инерции трекпад ещё
+     долго досылает события, поэтому один взмах = один слайд: дальше
+     блокируемся, пока поток событий не затихнет. */
+  useEffect(() => {
+    const el = stage.current;
+    if (!el) return;
+
+    let travelled = 0;
+    let locked = false;
+    let quiet: ReturnType<typeof setTimeout>;
+
+    const onWheel = (e: WheelEvent) => {
+      /* вертикальную прокрутку страницы не перехватываем */
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+
+      /* иначе Safari уведёт браузер «назад» по истории */
+      e.preventDefault();
+
+      clearTimeout(quiet);
+      quiet = setTimeout(() => {
+        travelled = 0;
+        locked = false;
+      }, 130);
+
+      if (locked) return;
+
+      travelled += e.deltaX;
+      if (Math.abs(travelled) > 42) {
+        go(travelled > 0 ? 1 : -1);
+        travelled = 0;
+        locked = true;
+      }
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", onWheel);
+      clearTimeout(quiet);
+    };
+  }, [go]);
+
   return (
     <section className={s.section} aria-label="Новинки">
       <div className="container">
@@ -110,10 +152,6 @@ export default function NewArrivals() {
                 <img src={asset(b.image)} alt={b.title} loading={i < 2 ? "eager" : "lazy"} />
               </Link>
 
-              <footer className={s.price}>
-                <span>{b.price}</span>
-                <em>{b.currency}</em>
-              </footer>
             </article>
           );
         })}

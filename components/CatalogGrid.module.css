@@ -1,0 +1,104 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 21px;
+  margin-top: 26px;
+}
+
+.empty {
+  margin: 40px 0 0;
+  color: var(--text-dim);
+}
+
+/* -------------------------------------------------- загрузить ещё */
+.more {
+  display: block;
+  margin: 42px auto 0;
+  padding-bottom: 4px;
+  position: relative;
+  font-size: 15px;
+  letter-spacing: 0.01em;
+  color: #e7e2d6;
+  transition: color 0.35s var(--ease);
+}
+.more::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: rgba(231, 226, 214, 0.8);
+  transform-origin: center;
+  transition: transform 0.4s var(--ease), background 0.35s var(--ease);
+}
+.more:hover {
+  color: var(--gold-light);
+}
+.more:hover::after {
+  background: var(--gold);
+  transform: scaleX(0.82);
+}
+
+/* -------------------------------------------------- страницы */
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 46px;
+  margin-top: 30px;
+}
+
+.page,
+.next,
+.gap {
+  font-size: 17px;
+  letter-spacing: 0.01em;
+  color: #d9d4ca;
+}
+
+.page,
+.next {
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.3s var(--ease);
+}
+.page:hover,
+.next:hover {
+  color: var(--gold);
+}
+
+/* текущая страница — с подчёркиванием */
+.pageActive {
+  color: #fff;
+}
+.pageActive::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: currentColor;
+}
+
+.gap {
+  color: #8b857c;
+  letter-spacing: 0.12em;
+}
+
+/* ================================================== мобильная версия */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .pager {
+    gap: 30px;
+    margin-top: 24px;
+  }
+  .more {
+    margin-top: 32px;
+  }
+}

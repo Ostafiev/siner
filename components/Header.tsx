@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { nav, contacts } from "@/lib/data";
 import { asset } from "@/lib/asset";
 import { CartIcon, ChevronIcon, HeartIcon, UserIcon } from "./Icons";
@@ -10,6 +11,12 @@ import s from "./Header.module.css";
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  /* закрываем меню при переходе на другую страницу */
+  useEffect(() => {
+    setOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -36,10 +43,10 @@ export default function Header() {
     <>
       <header className={`${s.header} ${scrolled ? s.scrolled : ""}`}>
         <div className={s.inner}>
-          {/* ---- левая группа (десктоп) ---- */}
+          {/* ---- левая группа: бургер и язык ---- */}
           <div className={s.left}>
             <button
-              className={`${s.burger} ${s.burgerDesktop}`}
+              className={s.burger}
               onClick={() => setOpen(true)}
               aria-label="Открыть меню"
               aria-expanded={open}
@@ -67,20 +74,9 @@ export default function Header() {
             <Link href="/cart" className={s.iconLink} aria-label="Корзина">
               <CartIcon className={s.icon} />
             </Link>
-            <Link href="/account" className={s.iconLink} aria-label="Личный кабинет">
+            <Link href="/orders" className={s.iconLink} aria-label="Личный кабинет">
               <UserIcon className={s.icon} />
             </Link>
-
-            <button
-              className={`${s.burger} ${s.burgerMobile}`}
-              onClick={() => setOpen(true)}
-              aria-label="Открыть меню"
-              aria-expanded={open}
-            >
-              <span />
-              <span />
-              <span />
-            </button>
           </div>
         </div>
       </header>
@@ -100,7 +96,12 @@ export default function Header() {
         <ul className={s.navList}>
           {nav.map((item, i) => (
             <li key={item.href} style={{ transitionDelay: `${80 + i * 45}ms` }}>
-              <Link href={item.href} onClick={() => setOpen(false)}>
+              <Link
+                href={item.href}
+                className={pathname === item.href ? s.navActive : undefined}
+                aria-current={pathname === item.href ? "page" : undefined}
+                onClick={() => setOpen(false)}
+              >
                 {item.label}
               </Link>
             </li>

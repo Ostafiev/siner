@@ -1,0 +1,155 @@
+/* Карточка заказа: с макета — ширина 385, три в ряд с отступом 22. */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 440px;
+  padding: 24px 20px 22px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+  transition: border-color 0.4s var(--ease);
+}
+.card:hover {
+  border-color: rgba(201, 184, 139, 0.32);
+}
+
+/* прозрачная ссылка на весь блок: ссылка в поддержку лежит выше неё */
+.hit {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-size: 17px;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.num {
+  white-space: nowrap;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+.check {
+  width: 15px;
+  height: 12px;
+  color: var(--text);
+}
+
+/* -------------------------------------------------- фотографии */
+.media {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  height: 186px;
+  margin-top: 20px;
+}
+
+.main {
+  max-height: 100%;
+  max-width: 62%;
+  object-fit: contain;
+}
+
+.more {
+  position: relative;
+  display: block;
+  width: 74px;
+  height: 74px;
+}
+.more img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0.45;
+}
+.count {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+  color: #fff;
+}
+
+/* -------------------------------------------------- данные заказа */
+.info {
+  margin: 26px 0 0;
+  font-size: 15px;
+  line-height: 21px;
+  color: var(--text-dim);
+}
+.info > div {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: 8px;
+  padding: 4px 0;
+}
+.info dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.support {
+  position: relative;
+  z-index: 2;
+  align-self: flex-start;
+  margin-top: auto;
+  padding-top: 30px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  transition: color 0.3s var(--ease);
+}
+.support:hover {
+  color: var(--gold-light);
+}
+
+@media (max-width: 760px) {
+  .card {
+    min-height: 0;
+    padding: 20px 16px 18px;
+  }
+  .head {
+    font-size: 16px;
+  }
+  .status {
+    font-size: 13px;
+  }
+  .media {
+    height: 150px;
+  }
+  .info {
+    font-size: 14px;
+  }
+  .info > div {
+    grid-template-columns: 100px minmax(0, 1fr);
+  }
+  .support {
+    padding-top: 22px;
+    font-size: 13px;
+  }
+}

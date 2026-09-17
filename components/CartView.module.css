@@ -1,0 +1,220 @@
+/* Корзина: слева позиции, справа панель заявки. С макета — панель 385,
+   отступ 22, значит левая колонка получает 793. */
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 385px;
+  gap: 22px;
+  align-items: start;
+  min-height: 260px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* -------------------------------------------------- панель заявки */
+.panel {
+  padding: 22px;
+  border: 1px solid var(--line-soft);
+  border-radius: 10px;
+}
+
+.panelTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 19px;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.second {
+  margin-top: 34px;
+}
+
+.field {
+  display: block;
+  margin-top: 22px;
+}
+.field > span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.field input,
+.field textarea {
+  display: block;
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.25);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--text);
+  transition: border-color 0.3s var(--ease);
+}
+.field input {
+  height: 50px;
+  padding-block: 0;
+}
+.field textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.field input:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: rgba(201, 184, 139, 0.5);
+}
+
+/* -------------------------------------------------- способ получения */
+.ways {
+  display: flex;
+  gap: 18px;
+  margin-top: 22px;
+}
+
+.way {
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid var(--line-soft);
+  border-radius: 6px;
+  background: none;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+.way:hover {
+  color: var(--text);
+}
+.wayOn {
+  border-color: var(--text);
+  color: var(--text);
+}
+
+/* -------------------------------------------------- итоги */
+.sum {
+  margin: 34px 0 0;
+  font-size: 15px;
+  color: var(--text-dim);
+}
+.sum > div {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 6px 0;
+}
+.sum dd {
+  margin: 0;
+  color: var(--text);
+}
+.total dt,
+.total dd {
+  color: var(--text);
+}
+
+.submit {
+  width: 100%;
+  height: 52px;
+  margin-top: 26px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--gold);
+  font-family: var(--font-display);
+  font-size: 15px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #17150f;
+  cursor: pointer;
+  transition: background 0.3s var(--ease);
+}
+.submit:hover {
+  background: var(--gold-light);
+}
+
+.consent {
+  margin: 16px 0 0;
+  font-size: 12px;
+  line-height: 17px;
+  color: var(--text-muted);
+}
+.consent a {
+  color: var(--text-dim);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.consent a:hover {
+  color: var(--gold-light);
+}
+
+/* -------------------------------------------------- пусто / отправлено */
+.done {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+.doneTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 30px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+.doneNote {
+  max-width: 460px;
+  margin: 16px auto 0;
+  font-size: 15px;
+  line-height: 23px;
+  color: var(--text-dim);
+}
+.doneLink {
+  display: inline-block;
+  margin-top: 26px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 6px;
+}
+.doneLink:hover {
+  color: var(--gold-light);
+}
+
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+}
+
+@media (max-width: 760px) {
+  .panel {
+    padding: 18px;
+  }
+  .panelTitle {
+    font-size: 17px;
+  }
+  .ways {
+    gap: 12px;
+  }
+  .way {
+    flex: 1 1 0;
+    padding: 0 10px;
+  }
+  .done {
+    padding: 50px 0 40px;
+  }
+  .doneTitle {
+    font-size: 24px;
+  }
+}
